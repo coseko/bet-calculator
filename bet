@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bet Calculator</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <div class="bet-calculator">
+        <h2>Bet Calculator</h2>
+        <label for="stake">Stake:</label>
+        <input type="number" id="stake" step="0.01" placeholder="Enter your stake" required>
+        <label for="odds">Odds (decimal):</label>
+        <input type="number" id="odds" step="0.01" placeholder="Enter the odds" required>
+        <button id="calculate">Calculate</button>
+        <p>Potential Return: <span id="potentialReturn">0.00</span></p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const stakeInput = document.getElementById("stake");
+            const oddsInput = document.getElementById("odds");
+            const calculateButton = document.getElementById("calculate");
+            const potentialReturnSpan = document.getElementById("potentialReturn");
+
+            calculateButton.addEventListener("click", function () {
+                const stake = parseFloat(stakeInput.value);
+                const odds = parseFloat(oddsInput.value);
+
+                if (!isNaN(stake) && !isNaN(odds)) {
+                    const potentialReturn = (stake * odds).toFixed(2);
+                    potentialReturnSpan.textContent = potentialReturn;
+                } else {
+                    potentialReturnSpan.textContent = "Invalid input";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
